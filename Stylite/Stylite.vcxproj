@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{5417E06A-A79A-42B4-B348-740165DC4E01}</ProjectGuid>
+    <RootNamespace>Stylite</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\FlareFlax\Desktop\Programming\OpenGL\Includes;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\FlareFlax\Desktop\Programming\OpenGL\Libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\FlareFlax\Desktop\Programming\OpenGL\Includes;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\FlareFlax\Desktop\Programming\OpenGL\Libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>SL_BUILD_DLL;SL_PLATFORM_WINDOWS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\FlareFlax\Desktop\Programming\OpenGL\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>SL_BUILD_DLL;SL_PLATFORM_WINDOWS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\FlareFlax\Desktop\Programming\OpenGL\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Stylite\Engine\Physics\Physics.h" />
+    <ClInclude Include="src\Stylite\Engine\Components\RigidBodyComponent.h" />
+    <ClInclude Include="src\Stylite\Engine\Scene\EntityManager.h" />
+    <ClInclude Include="src\Stylite\Engine\Physics\PhysicsManager.h" />
+    <ClInclude Include="src\Stylite\Engine\Components\ScriptComponent.h" />
+    <ClInclude Include="src\Stylite\Engine\Components\ShaderComponent.h" />
+    <ClInclude Include="src\Stylite\Engine\MeshData\Shapes.h" />
+    <ClInclude Include="src\Stylite\Engine\Input\Mouse.h" />
+    <ClInclude Include="src\Stylite\Engine\Input\Keyboard.h" />
+    <ClInclude Include="src\Stylite\Engine\Input\InputManager.h" />
+    <ClInclude Include="src\Stylite\Engine\MeshData\Texture.h" />
+    <ClInclude Include="src\Stylite\Engine\Scene\SceneManager.h" />
+    <ClInclude Include="src\Stylite\Engine\Time\FpsCounter.h" />
+    <ClInclude Include="src\Stylite\Engine\Shaders\ShaderManager.h" />
+    <ClInclude Include="src\Stylite\Engine\Shaders\BasicShader.h" />
+    <ClInclude Include="src\Stylite\Engine\Shaders\IShader.h" />
+    <ClInclude Include="src\Stylite\Engine\Scene\Entity.h" />
+    <ClInclude Include="src\Stylite\Engine\Components\Components.h" />
+    <ClInclude Include="src\Stylite\Engine\MeshData\Mesh.h" />
+    <ClInclude Include="src\Stylite\Engine\Components\IComponent.h" />
+    <ClInclude Include="src\Stylite\Engine\Components\RenderComponent.h" />
+    <ClInclude Include="src\Stylite\Engine\Scene\Scene.h" />
+    <ClInclude Include="src\Stylite\Engine\Math\Matrix\Matrix.h" />
+    <ClInclude Include="src\Stylite\Engine\Math\Matrix\Matrix4.h" />
+    <ClInclude Include="src\Stylite\Engine\Math\Mathematics.h" />
+    <ClInclude Include="src\Stylite\Engine\Math\Vector\Vector.h" />
+    <ClInclude Include="src\Stylite\Engine\Rendering\RenderingManager.h" />
+    <ClInclude Include="src\Stylite\Engine\Engine.h" />
+    <ClInclude Include="src\Stylite\Config\Configuration.h" />
+    <ClInclude Include="src\Stylite\Display\Display.h" />
+    <ClInclude Include="src\Stylite\Application.h" />
+    <ClInclude Include="src\Stylite.h" />
+    <ClInclude Include="src\Stylite\api_build.h" />
+    <ClInclude Include="src\Stylite\Engine\Math\Vector\Vector4.h" />
+    <ClInclude Include="src\Stylite\Engine\Math\Vector\Vector3.h" />
+    <ClInclude Include="src\Stylite\Engine\Math\Vector\Vector2.h" />
+    <ClInclude Include="src\Stylite\Engine\opengl\Vao.h" />
+    <ClInclude Include="src\Stylite\Engine\opengl\Vbo.h" />
+    <ClInclude Include="src\Stylite\Engine\Components\TransformComponent.h" />
+    <ClInclude Include="src\Stylite\Engine\Shaders\Shaders.h" />
+    <ClInclude Include="src\Stylite\Engine\Shaders\Uniforms\Uniform.h" />
+    <ClInclude Include="src\Stylite\Engine\Time\Time.h" />
+    <ClInclude Include="src\Stylite\Engine\Shaders\TextureShader.h" />
+    <ClInclude Include="src\Stylite\Engine\Utils\Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Stylite\Engine\Physics\Physics.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Components\RigidBodyComponent.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Scene\EntityManager.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Physics\PhysicsManager.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Components\ScriptComponent.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Components\ShaderComponent.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Math\Vector\Vector.cpp" />
+    <ClCompile Include="src\Stylite\Engine\MeshData\Shapes.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Input\Mouse.cpp" />
+    <ClCompile Include="src\Stylite\Config\Configuration.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Input\Keyboard.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Input\InputManager.cpp" />
+    <ClCompile Include="src\Stylite\Engine\MeshData\Texture.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Scene\SceneManager.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Time\FpsCounter.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Shaders\ShaderManager.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Shaders\BasicShader.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Shaders\IShader.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Components\IComponent.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Scene\Entity.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Components\RenderComponent.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Scene\Scene.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Rendering\RenderingManager.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Engine.cpp" />
+    <ClCompile Include="src\Stylite\Display\Display.cpp" />
+    <ClCompile Include="src\Stylite\Application.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Math\Vector\Vector4.cpp" />
+    <ClCompile Include="src\Stylite\Engine\opengl\Vao.cpp" />
+    <ClCompile Include="src\Stylite\Engine\opengl\Vbo.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Components\TransformComponent.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Shaders\Uniforms\Uniform.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Time\Time.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Shaders\TextureShader.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Utils\stb_image.cpp" />
+    <ClCompile Include="src\Stylite\Engine\Utils\Utility.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Stylite\Engine\Shaders\glsl\BasicShader_fs.glsl" />
+    <None Include="src\Stylite\Engine\Shaders\glsl\BasicShader_vs.glsl" />
+    <None Include="src\Stylite\Engine\Shaders\glsl\TextureShader_fs.glsl" />
+    <None Include="src\Stylite\Engine\Shaders\glsl\TextureShader_vs.glsl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
