@@ -1,2 +1,3 @@
 # Stylite
-2D Game Engine made with C++ and OpenGL  |  Dependencies: GLFW3, GLEW
+2D Game Engine made with C++ and OpenGL <br />
+Dependencies: GLFW3, GLEW <br />
