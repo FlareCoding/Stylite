@@ -21,11 +21,8 @@ namespace Stylite
 
 	void PhysicsManager::NormalizeEntityRotation(Entity* entity)
 	{
-		if (entity->transform->rotation > 180.0f)
-			entity->transform->rotation -= 360.0f;
-
-		if (entity->transform->rotation < -180.0f)
-			entity->transform->rotation += 360.0f;
+		if (entity->transform->rotation > 180.0f) entity->transform->rotation -= 360.0f;
+		if (entity->transform->rotation < -180.0f) entity->transform->rotation += 360.0f;
 	}
 
 	void PhysicsManager::ApplyRigidProperties(Entity* entity, RigidBodyComponent* rigid_body)

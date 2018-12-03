@@ -10,6 +10,7 @@ namespace Stylite
 
 	STYLITE_API Entity* CreateEntity();
 	STYLITE_API Entity* CreateEntity(RenderComponent* render_component, vec3 position, float rotation);
+	STYLITE_API Entity* CloneEntity(Entity* entity, vec3 position, float rotation);
 	STYLITE_API void	DeleteEntity(Entity* entity);
 	STYLITE_API void	DeleteAllEntities();
 

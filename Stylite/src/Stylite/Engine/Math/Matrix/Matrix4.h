@@ -41,6 +41,7 @@ namespace Stylite
 		Matrix4<T> Scale(Vector3<T> vec);
 		Matrix4<T> Transpose();
 		static Matrix4<T> Orthographic(T left, T right, T bottom, T top);
+		static Matrix4<T> Orthographic(T left, T right, T bottom, T top, T zNear, T zFar);
 
 		~Matrix4();
 	};
@@ -280,6 +281,19 @@ namespace Stylite
 		result.m11 = static_cast<T>(2) / (top - bottom);
 		result.m30 = -(right + left) / (right - left);
 		result.m31 = -(top + bottom) / (top - bottom);
+		return result;
+	}
+
+	template<typename T>
+	inline Matrix4<T> Matrix4<T>::Orthographic(T left, T right, T bottom, T top, T zNear, T zFar)
+	{
+		Matrix4<T> result(static_cast<T>(1));
+		result.m00 = static_cast<T>(2) / (right - left);
+		result.m11 = static_cast<T>(2) / (top - bottom);
+		result.m22 = -static_cast<T>(2) / (zFar - zNear);
+		result.m30 = -(right + left) / (right - left);
+		result.m31 = -(top + bottom) / (top - bottom);
+		result.m32 = -(zFar + zNear) / (zFar - zNear);
 		return result;
 	}
 

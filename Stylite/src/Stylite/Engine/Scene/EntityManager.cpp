@@ -1,6 +1,6 @@
 #include "EntityManager.h"
 #include "SceneManager.h"
-#include "../Components/RenderComponent.h"
+#include "../Components/Components.h"
 
 namespace Stylite
 {
@@ -21,6 +21,26 @@ namespace Stylite
 		entity->transform->rotation = rotation;
 		entity_pool.push_back(entity);
 		return entity;
+	}
+
+	STYLITE_API Entity* CloneEntity(Entity* entity, vec3 position, float rotation)
+	{
+		Entity* clone = new Entity();
+		entity_pool.push_back(clone);
+		clone->	name = entity->name;
+
+		auto* _RenderComponent = entity->GetComponent<RenderComponent>();
+		auto* _ShaderComponent = entity->GetComponent<ShaderComponent>();
+		auto* _RigidBodyComponent = entity->GetComponent<RigidBodyComponent>();
+
+		if (_RenderComponent) clone->AddComponent<RenderComponent>(new RenderComponent(_RenderComponent->mesh, &_RenderComponent->texture));
+		if (_ShaderComponent) clone->AddComponent<ShaderComponent>(new ShaderComponent(_ShaderComponent->shader_type));
+		if (_RigidBodyComponent) clone->AddComponent<RigidBodyComponent>(new RigidBodyComponent());
+
+		clone->transform->position = position;
+		clone->transform->rotation = rotation;
+
+		return clone;
 	}
 
 	void DeleteEntity(Entity* entity)

@@ -6,4 +6,9 @@ namespace Stylite
 	{
 		rigid_body->velocity += direction * speed;
 	}
+
+	float Physics::Distance(Entity* first, Entity* second)
+	{
+		return abs((first->transform->position - second->transform->position).Length());
+	}
 }

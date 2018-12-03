@@ -40,7 +40,11 @@ namespace Stylite
 		}
 
 		STYLITE_API void RemoveComponent(IComponent* _component);
+		STYLITE_API unsigned int ComponentCount() { return this->components.size(); }
+
 		TransformComponent* transform;
+		std::string name = "Entity";
+		bool operator==(const Entity& entity);
 
 		STYLITE_API ~Entity();
 

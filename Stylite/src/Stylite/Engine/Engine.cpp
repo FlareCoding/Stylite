@@ -85,6 +85,8 @@ namespace Stylite
 		{
 			for (Entity* e : active_scene->GetEntities())
 			{
+				if (!e || e->ComponentCount() < 1) continue; // if an entity is not valid
+
 				// physics corrections / calculations
 				m_PhysicsManager->NormalizeEntityRotation(e);
 				auto* rigid_body_component = e->GetComponent<RigidBodyComponent>();

@@ -28,8 +28,6 @@ namespace Stylite
 
 	RenderComponent::~RenderComponent()
 	{
-		vao->remove();
-		texture.delete_texture();
 		delete vao;
 	}
 }

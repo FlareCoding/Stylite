@@ -14,4 +14,9 @@ namespace Stylite
 			delete it->second;
 		delete transform;
 	}
+
+	bool Entity::operator==(const Entity& entity)
+	{
+		return (this == &entity);
+	}
 }

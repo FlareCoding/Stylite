@@ -18,9 +18,9 @@ public:
 		engine->SetAntiAliasing(true);
 		engine->SetMutlisamplingSamples(16);
 		engine->Initialize();
-		engine->SetFpsCounter(true);
 
 		SetupScene();
+		StartTime = Time::GetTime();
 	}
 
 	void Shutdown()
@@ -52,17 +52,24 @@ public:
 
 		if (msg != 0) msg = 0;
 
-		std::cout << m_MainScene->GetEntities().size() << " entities in the scene\n";
+		double CurrentTime = Time::GetTime();
+		if (CurrentTime - StartTime > 2)
+		{
+			StartTime = CurrentTime;
+			if (Time::TimeScale > 0) SpawnAsteroid();
+		}
 	}
 
 	~Game() {}
 
 private:
 	Scene* m_MainScene;
-	Entity* entity;
+	Entity* player;
+	Entity* asteroid;
 	Mesh mesh;
 	Texture spaceship_texture;
 	int msg = 0;
+	double StartTime;
 
 	void SpawnAsteroid()
 	{
@@ -70,34 +77,36 @@ private:
 		Texture asteroidTexture = CreateTexture("C:\\Users\\FlareFlax\\Desktop\\asteroid.png", ClampToBorder);
 		asteroidTexture.transparent = true;
 
-		Entity* asteroid = CreateEntity(new RenderComponent(asteroidMesh, &asteroidTexture), vec3(600, 600, 0), 0);
+		asteroid = CreateEntity(new RenderComponent(asteroidMesh, &asteroidTexture), vec3(RandomFloat(200, 1000), RandomFloat(100, 1000), -1), 0);
+		asteroid->name = "Asteroid";
 		asteroid->AddComponent<ShaderComponent>(new ShaderComponent(_TextureShader));
 		asteroid->AddComponent<ScriptComponent>(new AsteroidScript());
 		asteroid->AddComponent<RigidBodyComponent>(new RigidBodyComponent());
-		AddEntityToScene(asteroid);
+		AddEntityToScene(asteroid, m_MainScene);
+		if (player) static_cast<PlayerScript*>(player->GetComponent<ScriptComponent>())->asteroids.push_back(asteroid);
 
-		Physics::ApplyForce(asteroid->GetComponent<RigidBodyComponent>(), vec2(0.2f, 0.2f), 40.0f);
+		Physics::ApplyForce(asteroid->GetComponent<RigidBodyComponent>(), vec2(0.2f, 0.2f), 160.0f);
 	}
 
 	void SetupScene()
 	{
 		m_MainScene = CreateScene();
+		SpawnAsteroid();
 
 		mesh = Shapes::Rectangle(160, 156);
 		spaceship_texture = CreateTexture("C:\\Users\\FlareFlax\\Desktop\\spaceship.png", ClampToBorder);
 		spaceship_texture.transparent = true;
 
-		entity = CreateEntity();
-		entity->AddComponent<RenderComponent>(new RenderComponent(mesh, &spaceship_texture));
-		entity->AddComponent<ShaderComponent>(new ShaderComponent(_TextureShader));
-		entity->AddComponent<ScriptComponent>(new PlayerScript());
-		entity->AddComponent<RigidBodyComponent>(new RigidBodyComponent());
-		entity->transform->position = vec3(400, 300, 0);
+		player = CreateEntity();
+		player->name = "Player";
+		player->AddComponent<RenderComponent>(new RenderComponent(mesh, &spaceship_texture));
+		player->AddComponent<ShaderComponent>(new ShaderComponent(_TextureShader));
+		player->AddComponent<ScriptComponent>(new PlayerScript(asteroid));
+		player->AddComponent<RigidBodyComponent>(new RigidBodyComponent());
+		player->transform->position = vec3(400, 300, 0);
 
-		AddEntityToScene(entity, m_MainScene);
+		AddEntityToScene(player, m_MainScene);
 		SetActiveScene(m_MainScene);
-
-		SpawnAsteroid();
 	}
 };
 

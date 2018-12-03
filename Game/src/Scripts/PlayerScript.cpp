@@ -1,12 +1,14 @@
 #include "PlayerScript.h"
 
-PlayerScript::PlayerScript()
+PlayerScript::PlayerScript(Entity* firstAsteroid)
 {
 	normalTexture = CreateTexture("C:\\Users\\FlareFlax\\Desktop\\spaceship.png", ClampToBorder);
 	normalTexture.transparent = true;
 
 	acceleratingTexture = CreateTexture("C:\\Users\\FlareFlax\\Desktop\\spaceshipAccelerating.png", ClampToBorder);
 	acceleratingTexture.transparent = true;
+
+	asteroids.push_back(firstAsteroid);
 }
 
 PlayerScript::~PlayerScript()
@@ -49,15 +51,48 @@ Entity* PlayerScript::CreateBullet()
 	Entity* bullet = CreateEntity(new RenderComponent(bulletMesh, nullptr), owner->transform->position, owner->transform->rotation);
 
 	bullet->AddComponent<RigidBodyComponent>(new RigidBodyComponent());
-	bullet->AddComponent<ScriptComponent>(new BulletScript());
+	bullet->AddComponent<ScriptComponent>(new BulletScript(asteroids));
 
 	return bullet;
+}
+
+void PlayerScript::CheckCollisionWithAsteroids()
+{
+	for (Entity* e : GetActiveScene()->GetEntities())
+	{
+		if (e->name._Equal("Asteroid"))
+		{
+			if (Physics::Distance(owner, e) < 40)
+			{
+				size_t asteroidIndex = std::find(asteroids.begin(), asteroids.end(), e) - asteroids.begin();
+				asteroids.erase(asteroids.begin() + asteroidIndex);
+				RemoveEntityFromScene(e);
+				DeleteEntity(e);
+				health--;
+				return;
+			}
+		}
+	}
+}
+
+void PlayerScript::CheckHealth()
+{
+	std::cout << "Health: " << health << "\n";
+	if (health < 0)
+	{
+		RemoveEntityFromScene(owner);
+		DeleteEntity(owner);
+		Time::TimeScale = 0;
+		return;
+	}
 }
 
 void PlayerScript::OnUpdate()
 {
 	ProcessMovement();
-
+	CheckCollisionWithAsteroids();
+	CheckHealth();
+	
 	if (timeUntilNextShot > 0) timeUntilNextShot--;
 
 	if (Keyboard::IsKeyDown(Keyboard::KEY_SPACE))
